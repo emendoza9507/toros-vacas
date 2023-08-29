@@ -1,0 +1,215 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "API Games",
+        "version": "v1"
+    },
+    "paths": {
+        "/api/game/{id}/detail": {
+            "get": {
+                "tags": [
+                    "Game"
+                ],
+                "summary": "Mostrar evaluacion de las combinaciones ejecutadas para el Juego.",
+                "operationId": "337ec58d8015e2874ca1f374e5ef0982",
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "404": {
+                        "description": "Juego no encontrado"
+                    }
+                },
+                "security": [
+                    {
+                        "Authentication_Token": []
+                    }
+                ]
+            }
+        },
+        "/api/game/{id}/prev/{combination}": {
+            "get": {
+                "tags": [
+                    "Game"
+                ],
+                "summary": "Mostrar la evaluacion de la combinacion ejecutada para el Juego.",
+                "operationId": "405228e730ef2d5cbfe3c49e1220f135",
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "404": {
+                        "description": "Juego no encontrado"
+                    }
+                },
+                "security": [
+                    {
+                        "Authentication_Token": []
+                    }
+                ]
+            }
+        },
+        "/api/game/create": {
+            "post": {
+                "tags": [
+                    "Game"
+                ],
+                "summary": "Crea un nuevo juego con los datos solicitados",
+                "operationId": "ac0c37c02739b99cedc0f4fabc868823",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "username",
+                                    "age"
+                                ],
+                                "properties": {
+                                    "username": {
+                                        "type": "string"
+                                    },
+                                    "age": {
+                                        "type": "number"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    }
+                },
+                "security": [
+                    {
+                        "Authentication_Token": []
+                    }
+                ]
+            }
+        },
+        "/api/game/{id}/propose": {
+            "post": {
+                "tags": [
+                    "Game"
+                ],
+                "summary": "Procesa la combinacion enviada para el juego solicitado",
+                "operationId": "e6ccdf8e14d7fcb6a744382a0e00983c",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "combination",
+                                    "auth_hey"
+                                ],
+                                "properties": {
+                                    "combination": {
+                                        "type": "string"
+                                    },
+                                    "auth_key": {
+                                        "type": "string"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Detalle de combinacion"
+                    },
+                    "201": {
+                        "description": "Combinacion duplicada"
+                    },
+                    "202": {
+                        "description": "Juego Ganado"
+                    },
+                    "203": {
+                        "description": "Juego Perdido"
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    }
+                },
+                "security": [
+                    {
+                        "Authentication_Token": []
+                    }
+                ]
+            }
+        },
+        "/api/game/{id}/delete": {
+            "delete": {
+                "tags": [
+                    "Game"
+                ],
+                "summary": "Elimina el Juego especificado por su id.",
+                "operationId": "58d3dde6819f94cebb27afaf6a6c4640",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "number"
+                        }
+                    },
+                    {
+                        "name": "auth_key",
+                        "in": "query",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    }
+                },
+                "security": [
+                    {
+                        "Authentication_Token": []
+                    }
+                ]
+            }
+        }
+    },
+    "components": {
+        "securitySchemes": {
+            "Authentication_Token": {
+                "type": "apiKey",
+                "name": "X-API-KEY",
+                "in": "header"
+            }
+        }
+    }
+}

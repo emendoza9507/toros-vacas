@@ -1,0 +1,56 @@
+@host = http://0.0.0.0
+@host_api = {{host}}/api
+
+@api_game = {{host_api}}/game
+@apiKey = $2y$10$vgWE4W7aHyqs8.J/9dfCBOkBq8Y8b7/c5zkl0AAoZSawEUuUe5zEe
+
+###
+# @name Login
+GET {{host_api}}/token HTTP/1.1
+Content-Type: application/json
+###
+
+###
+GET {{api_game}}/list HTTP/1.1
+Content-Type: application/json
+X-API-KEY: {{apiKey}}
+###
+
+###
+# @name Create_Game
+POST {{api_game}}/create HTTP/1.1
+Content-Type: application/json
+X-API-KEY: {{apiKey}}
+
+{
+    "username" : "emendoza",
+    "age": 23
+}
+###
+
+
+###
+# @name Propose_Combination
+POST {{api_game}}/14/propose HTTP/1.1
+Content-Type: application/json
+X-API-KEY: {{apiKey}}
+
+{
+    "combination": "3247",
+    "auth_key": "fafa790109c4faaa13f4c3f2489730ef590409d3e8e4d82b3f800acf2170602e"
+}
+###
+
+###
+# @name Game_Detail
+GET {{api_game}}/11/prev/3247 HTTP/1.1
+Content-Type: application/json
+X-API-KEY: {{apiKey}}
+###
+
+###
+# @name Detail_Combination_Detail
+GET {{api_game}}/11/detail HTTP/1.1
+Content-Type: application/json
+X-API-KEY: {{apiKey}}
+###
