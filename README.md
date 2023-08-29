@@ -11,8 +11,10 @@
 Ejecute los comandos requeridos para la instalacion de una aplicacion en 
 [Laravel 10](https://laravel.com/docs)
 
+- Haga una copia del archivo .env.example con el nombre .env
 - composer install 
 - php artisan migrate
+
 
 Para contar con Juegos de prueba para la ejucion del proceso de ranking
 ejecute 
